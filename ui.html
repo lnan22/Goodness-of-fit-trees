@@ -1,0 +1,54 @@
+<header class="st-header q-pa-sm">
+    <h1 class="st-header__title text-h3">Phylogenetic Goodness of Fit</h1>
+</header>
+<div class="row">
+    <div class="st-col col-12 col-sm st-module">
+        <p><b>Set seed</b></p>
+        <q-slider v-model="setseed" :label="isready"></q-slider>
+    </div>
+    <div class="st-col col-12 col-sm st-module">
+        <p><b>Number of simulations</b></p>
+        <q-slider v-model="nsimulation" :label="isready"></q-slider>
+    </div>
+    <div class="st-col col-12 col-sm st-module">
+        <p><b>Optimal</b></p>
+        <q-select :model-value="TFchoice" v-model="optimal_bl" :options="TFchoice" dense></q-select>
+    </div>
+    <div class="st-col col-12 col-sm st-module">
+        <p><b>Test statistics</b></p>
+        <q-select :model-value="stat_choice" :options="stat_choice" v-model="test_stat" dense></q-select>
+    </div>
+    <div class="st-col col-12 col-sm st-module">
+        <p><b>Correct</b></p>
+        <q-select :model-value="corr_choice" :options="corr_choice" v-model="correct" dense></q-select>
+    </div>
+    <div class="st-col col-12 col-sm st-module">
+        <p><b>Diagnose</b></p>
+        <q-select :model-value="TFchoice" :options="TFchoice" v-model="diagnose" dense></q-select>
+    </div>
+    <div class="st-col col-12 col-sm st-module">
+        <p><b>Keep</b></p>
+        <q-select :model-value="TFchoice" :options="TFchoice" v-model="keep" dense></q-select>
+    </div>
+</div>
+<div>
+    <button @click="isready = !isready">Update Plots</button>
+</div>
+<div>
+    <br>
+    <p> The overall p-value: {{Pval}}</p>
+</div>
+<div class="row">
+    <div class="st-col col-4 col-sm st-module">
+        <p><b>Scatter plot for CF</b></p>
+        <plotly :data="trace_cf" :layout="layout_cf"> </plotly>
+    </div>
+    <div class="st-col col-4 col-sm st-module">
+        <p><b>P-value Distribution</b></p>
+        <plotly :data="trace_p" :layout="layout_p"> </plotly>
+    </div>
+    <div class="st-col col-4 col-sm st-module">
+        <p><b>Z Value Distribution</b></p>
+        <plotly :data="Z_combined_trace" :layout="Zhist_layout"> </plotly>
+    </div>
+</div>
